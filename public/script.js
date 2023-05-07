@@ -12,8 +12,8 @@ form.addEventListener("submit", function(e){
     newList.style.paddingLeft = "0.5rem";
     newList.style.paddingBlock = "0.4rem";
     newList.style.background = "#1dd1a1";
-    newList.style.margin = ".2em";
-    newList.style.borderRadius = "5px";
+    newList.style.marginTop = ".2em";
+    newList.style.borderRadius = "0.375rem";
     newList.style.fontSize = "1.2rem";
 
     listContainer.appendChild(newList);
