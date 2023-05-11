@@ -1,24 +1,46 @@
 const form = document.querySelector("form");
 const listContainer = document.querySelector("ul");
 
+form.addEventListener("submit", function (e) {
+  e.preventDefault();
+  const inputValue = document.querySelector("input").value;
 
-form.addEventListener("submit", function(e){
-    e.preventDefault();
-    const inputValue = document.querySelector("input").value;
-    const newList = document.createElement("li");
+  // New list
+  const newList = document.createElement("li");
+  newList.style.display = "flex";
+  newList.style.justifyContent = "space-between";
+  newList.style.paddingInline = ".5rem";
+  newList.style.backgroundColor = "#dcdde1";
+  newList.style.marginBlock = ".5em";
+  newList.style.paddingBlock = ".5em";
+  newList.style.borderRadius = ".3em";
 
-    // styles
-    if(inputValue){
-    newList.style.paddingLeft = "0.5rem";
-    newList.style.paddingBlock = "0.4rem";
-    newList.style.background = "#1dd1a1";
-    newList.style.marginTop = ".2em";
-    newList.style.borderRadius = "0.375rem";
-    newList.style.fontSize = "1.2rem";
+  // Text inside a todo
+  const todoText = document.createElement("span");
+  todoText.style.alignSelf = "center";
+
+  // Delete button
+  const deleteBtn = document.createElement("span");
+  deleteBtn.innerText = "Delete";
+  deleteBtn.style.color = "white";
+  deleteBtn.style.backgroundColor = "red";
+  deleteBtn.style.borderRadius = ".2em";
+  deleteBtn.style.padding = ".2em";
+  deleteBtn.style.cursor = "pointer";
+
+  if (inputValue) {
+    todoText.textContent = inputValue;
+    newList.appendChild(todoText);
+    newList.appendChild(deleteBtn);
 
     listContainer.appendChild(newList);
-    newList.innerText = inputValue;
-    document.querySelector("input").value = ""
-    }
-    
-})
+
+    document.querySelector("input").value = "";
+  }
+
+
+//   Remove todo
+  deleteBtn.addEventListener("click", function(e){
+    e.target.parentElement.remove();
+  })
+});
