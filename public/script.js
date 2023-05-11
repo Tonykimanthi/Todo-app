@@ -49,7 +49,7 @@ form.addEventListener("submit", function (e) {
 //   Strike through on a todo
 newList.addEventListener("dblclick", function(){
     if(todoText.style.textDecoration === "none"){
-    newList.style.opacity = ".5";
+    newList.style.opacity = ".4";
     deleteBtn.innerText = "Saved";
     deleteBtn.style.backgroundColor = "green";
     deleteBtn.style.pointerEvents = "none";
