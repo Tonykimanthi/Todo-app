@@ -1,6 +1,7 @@
 const form = document.querySelector("form");
 const listContainer = document.querySelector("ul");
 
+storeOnLocalS();
 form.addEventListener("submit", function (e) {
   e.preventDefault();
   const inputValue = document.querySelector("input").value;
@@ -39,30 +40,38 @@ form.addEventListener("submit", function (e) {
     document.querySelector("input").value = "";
   }
 
-
-//   Remove todo
-  deleteBtn.addEventListener("click", function(e){
+  //   Remove todo
+  deleteBtn.addEventListener("click", function (e) {
     e.target.parentElement.remove();
   });
 
+  const storeCompletedTodo = [];
 
-//   Strike through on a todo
-newList.addEventListener("dblclick", function(){
-    if(todoText.style.textDecoration === "none"){
-    newList.style.opacity = ".4";
-    deleteBtn.innerText = "Saved";
-    deleteBtn.style.backgroundColor = "green";
-    deleteBtn.style.pointerEvents = "none";
-    todoText.style.textDecoration = "line-through";
-    }else {
-        newList.style.opacity = "1";
-        deleteBtn.innerText = "Delete";
-        deleteBtn.style.backgroundColor = "red";
-        deleteBtn.style.pointerEvents = "auto";
-        todoText.style.textDecoration = "none";
+  //   Strike through on a todo
+  newList.addEventListener("dblclick", function () {
+    if (todoText.style.textDecoration === "none") {
+      newList.style.opacity = ".4";
+      deleteBtn.innerText = "Saved";
+      deleteBtn.style.backgroundColor = "green";
+      deleteBtn.style.pointerEvents = "none";
+      todoText.style.textDecoration = "line-through";
+
+      const wholeTodo = newList;
+      storeCompletedTodo.push(wholeTodo);
+
+      localStorage.setItem("store", storeCompletedTodo);
+      console.log(storeCompletedTodo);
+    } else {
+      newList.style.opacity = "1";
+      deleteBtn.innerText = "Delete";
+      deleteBtn.style.backgroundColor = "red";
+      deleteBtn.style.pointerEvents = "auto";
+      todoText.style.textDecoration = "none";
     }
-
-    
+  });
 });
 
-});
+function storeOnLocalS () {
+  const localS = localStorage.getItem("store");
+  console.log(localS);
+};
