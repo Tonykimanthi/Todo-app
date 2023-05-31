@@ -1,9 +1,23 @@
 const form = document.querySelector("form");
 const listContainer = document.querySelector("ul");
 
-storeOnLocalS();
+
+
+
+const s = storeOnLocalS();
+console.log(s)
+
+const storeCompletedTodo = [];
+console.log(storeCompletedTodo)
+
+function loadLsItems(){
+  
+}
+
+
 form.addEventListener("submit", function (e) {
   e.preventDefault();
+
   const inputValue = document.querySelector("input").value;
 
   // New list
@@ -45,7 +59,6 @@ form.addEventListener("submit", function (e) {
     e.target.parentElement.remove();
   });
 
-  const storeCompletedTodo = [];
 
   //   Strike through on a todo
   newList.addEventListener("dblclick", function () {
@@ -56,10 +69,10 @@ form.addEventListener("submit", function (e) {
       deleteBtn.style.pointerEvents = "none";
       todoText.style.textDecoration = "line-through";
 
-      const wholeTodo = newList;
-      storeCompletedTodo.push(wholeTodo);
+      const textInTodo = todoText.textContent;
+      storeCompletedTodo.push(textInTodo);
 
-      localStorage.setItem("store", storeCompletedTodo);
+      localStorage.setItem("store", JSON.stringify(storeCompletedTodo));
       console.log(storeCompletedTodo);
     } else {
       newList.style.opacity = "1";
@@ -73,5 +86,5 @@ form.addEventListener("submit", function (e) {
 
 function storeOnLocalS () {
   const localS = localStorage.getItem("store");
-  console.log(localS);
+  JSON.parse(localS)
 };
