@@ -1,21 +1,59 @@
 const form = document.querySelector("form");
 const listContainer = document.querySelector("ul");
 
-
-
-
-const s = storeOnLocalS();
-console.log(s)
-
 const storeCompletedTodo = [];
-console.log(storeCompletedTodo)
+console.log(storeCompletedTodo);
 
-function loadLsItems(){
-  
+window.onload = function(){
+  loadLsItems()
+};
+
+function loadLsItems() {
+  if (localStorage.getItem("store")) {
+
+    const newList = document.createElement("li");
+      newList.style.display = "flex";
+      newList.style.justifyContent = "space-between";
+      newList.style.paddingInline = ".5rem";
+      newList.style.backgroundColor = "#dcdde1";
+      newList.style.marginBlock = ".5em";
+      newList.style.paddingBlock = ".5em";
+      newList.style.borderRadius = ".3em";
+
+      // Text inside a todo
+      const todoText = document.createElement("span");
+      todoText.style.alignSelf = "center";
+
+      // Delete button
+      const deleteBtn = document.createElement("span");
+      deleteBtn.innerHTML = "Delete";
+      deleteBtn.style.color = "white";
+      deleteBtn.style.fontSize = "1.1rem";
+      deleteBtn.style.backgroundColor = "#e84118";
+      deleteBtn.style.borderRadius = ".2em";
+      deleteBtn.style.padding = ".2em";
+      deleteBtn.style.cursor = "pointer";
+
+      
+      const localS = localStorage.getItem("store");
+      JSON.parse(localS);
+      console.log(localS);
+    for (let i = 0; i < localS.length; i++) {
+      
+      todoText.textContent = localS;
+      newList.appendChild(todoText);
+      newList.appendChild(deleteBtn);
+
+      listContainer.appendChild(newList);
+    }
+  } else {
+    console.log("No item available");
+  }
 }
 
+form.addEventListener("submit", createTodo);
 
-form.addEventListener("submit", function (e) {
+function createTodo(e) {
   e.preventDefault();
 
   const inputValue = document.querySelector("input").value;
@@ -59,7 +97,6 @@ form.addEventListener("submit", function (e) {
     e.target.parentElement.remove();
   });
 
-
   //   Strike through on a todo
   newList.addEventListener("dblclick", function () {
     if (todoText.style.textDecoration === "none") {
@@ -82,9 +119,4 @@ form.addEventListener("submit", function (e) {
       todoText.style.textDecoration = "none";
     }
   });
-});
-
-function storeOnLocalS () {
-  const localS = localStorage.getItem("store");
-  JSON.parse(localS)
-};
+}
