@@ -8,6 +8,7 @@ window.onload = function(){
   loadLsItems()
 };
 
+// incomplete
 function loadLsItems() {
   if (localStorage.getItem("store")) {
 
@@ -40,7 +41,7 @@ function loadLsItems() {
       console.log(localS);
     for (let i = 0; i < localS.length; i++) {
       
-      todoText.textContent = localS;
+      todoText.textContent = localS[i];
       newList.appendChild(todoText);
       newList.appendChild(deleteBtn);
 
@@ -106,7 +107,7 @@ function createTodo(e) {
       deleteBtn.style.pointerEvents = "none";
       todoText.style.textDecoration = "line-through";
 
-      const textInTodo = todoText.textContent;
+      const textInTodo = inputValue;
       storeCompletedTodo.push(textInTodo);
 
       localStorage.setItem("store", JSON.stringify(storeCompletedTodo));
