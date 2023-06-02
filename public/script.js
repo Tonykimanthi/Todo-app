@@ -10,8 +10,6 @@ window.onload = function () {
 
 // incomplete
 function loadLsItems() {
-  const inputValue = document.querySelector("input").value;
-
   if (localStorage.getItem("store")) {
     let localS = localStorage.getItem("store");
     localS = JSON.parse(localS);
@@ -49,13 +47,6 @@ function loadLsItems() {
 
       deleteBtn.addEventListener("click", (e) => {
         e.target.parentElement.remove();
-        const textInTodo = inputValue;
-        const inputValueIndex = storeCompletedTodo.indexOf(textInTodo);
-        if (inputValueIndex !== -1) {
-          storeCompletedTodo.splice(inputValueIndex, 1);
-          localStorage.setItem("store", JSON.stringify(storeCompletedTodo));
-          console.log(storeCompletedTodo);
-        }
       });
     }
   } else {
@@ -129,6 +120,14 @@ function createTodo(e) {
       deleteBtn.style.backgroundColor = "red";
       deleteBtn.style.pointerEvents = "auto";
       todoText.style.textDecoration = "none";
+
+      const textInTodo = inputValue;
+      const inputValueIndex = storeCompletedTodo.indexOf(textInTodo);
+      if (inputValueIndex !== -1) {
+        storeCompletedTodo.splice(inputValueIndex, 1);
+        localStorage.setItem("store", JSON.stringify(storeCompletedTodo));
+        console.log(storeCompletedTodo);
+      }
     }
   });
 }
