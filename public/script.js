@@ -46,7 +46,7 @@ function loadLsItems() {
       console.log(todoText.textContent);
 
       deleteBtn.addEventListener("click", (e)=>{
-        e.target.parentElement.remove()
+        e.target.parentElement.remove();
       })
     }
   } else {
