@@ -10,6 +10,8 @@ window.onload = function () {
 
 // incomplete
 function loadLsItems() {
+  const inputValue = document.querySelector("input").value;
+
   if (localStorage.getItem("store")) {
     let localS = localStorage.getItem("store");
     localS = JSON.parse(localS);
@@ -45,9 +47,16 @@ function loadLsItems() {
       listContainer.appendChild(newList);
       console.log(todoText.textContent);
 
-      deleteBtn.addEventListener("click", (e)=>{
+      deleteBtn.addEventListener("click", (e) => {
         e.target.parentElement.remove();
-      })
+        const textInTodo = inputValue;
+        const inputValueIndex = storeCompletedTodo.indexOf(textInTodo);
+        if (inputValueIndex !== -1) {
+          storeCompletedTodo.splice(inputValueIndex, 1);
+          localStorage.setItem("store", JSON.stringify(storeCompletedTodo));
+          console.log(storeCompletedTodo);
+        }
+      });
     }
   } else {
     console.log("No item available");
