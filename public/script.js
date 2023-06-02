@@ -55,6 +55,11 @@ function loadLsItems() {
 }
 
 form.addEventListener("submit", createTodo);
+form.addEventListener("keypress", (e)=>{
+  if(e.key === 'Enter'){
+    createTodo
+  }
+})
 
 function createTodo(e) {
   e.preventDefault();
@@ -128,6 +133,7 @@ function createTodo(e) {
         localStorage.setItem("store", JSON.stringify(storeCompletedTodo));
         console.log(storeCompletedTodo);
       }
+      
     }
   });
 }
