@@ -37,13 +37,17 @@ function loadLsItems() {
       deleteBtn.style.borderRadius = ".2em";
       deleteBtn.style.padding = ".2em";
       deleteBtn.style.cursor = "pointer";
-      
+
       todoText.textContent = localS[i];
       newList.appendChild(todoText);
       newList.appendChild(deleteBtn);
 
       listContainer.appendChild(newList);
       console.log(todoText.textContent);
+
+      deleteBtn.addEventListener("click", (e)=>{
+        e.target.parentElement.remove()
+      })
     }
   } else {
     console.log("No item available");
