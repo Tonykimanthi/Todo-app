@@ -37,6 +37,7 @@ function loadLsItems() {
       deleteBtn.style.borderRadius = ".2em";
       deleteBtn.style.padding = ".2em";
       deleteBtn.style.cursor = "pointer";
+      
       todoText.textContent = localS[i];
       newList.appendChild(todoText);
       newList.appendChild(deleteBtn);
