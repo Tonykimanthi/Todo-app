@@ -4,48 +4,46 @@ const listContainer = document.querySelector("ul");
 const storeCompletedTodo = [];
 console.log(storeCompletedTodo);
 
-window.onload = function(){
-  loadLsItems()
+window.onload = function () {
+  loadLsItems();
 };
 
 // incomplete
 function loadLsItems() {
   if (localStorage.getItem("store")) {
+    let localS = localStorage.getItem("store");
+    localS = JSON.parse(localS);
 
     const newList = document.createElement("li");
-      newList.style.display = "flex";
-      newList.style.justifyContent = "space-between";
-      newList.style.paddingInline = ".5rem";
-      newList.style.backgroundColor = "#dcdde1";
-      newList.style.marginBlock = ".5em";
-      newList.style.paddingBlock = ".5em";
-      newList.style.borderRadius = ".3em";
+    newList.style.display = "flex";
+    newList.style.justifyContent = "space-between";
+    newList.style.paddingInline = ".5rem";
+    newList.style.backgroundColor = "#dcdde1";
+    newList.style.marginBlock = ".5em";
+    newList.style.paddingBlock = ".5em";
+    newList.style.borderRadius = ".3em";
 
-      // Text inside a todo
-      const todoText = document.createElement("span");
-      todoText.style.alignSelf = "center";
+    // Text inside a todo
+    const todoText = document.createElement("span");
+    todoText.style.alignSelf = "center";
 
-      // Delete button
-      const deleteBtn = document.createElement("span");
-      deleteBtn.innerHTML = "Delete";
-      deleteBtn.style.color = "white";
-      deleteBtn.style.fontSize = "1.1rem";
-      deleteBtn.style.backgroundColor = "#e84118";
-      deleteBtn.style.borderRadius = ".2em";
-      deleteBtn.style.padding = ".2em";
-      deleteBtn.style.cursor = "pointer";
+    // Delete button
+    const deleteBtn = document.createElement("span");
+    deleteBtn.innerHTML = "Delete";
+    deleteBtn.style.color = "white";
+    deleteBtn.style.fontSize = "1.1rem";
+    deleteBtn.style.backgroundColor = "#e84118";
+    deleteBtn.style.borderRadius = ".2em";
+    deleteBtn.style.padding = ".2em";
+    deleteBtn.style.cursor = "pointer";
 
-      
-      const localS = localStorage.getItem("store");
-      JSON.parse(localS);
-      console.log(localS);
     for (let i = 0; i < localS.length; i++) {
-      
       todoText.textContent = localS[i];
       newList.appendChild(todoText);
       newList.appendChild(deleteBtn);
 
       listContainer.appendChild(newList);
+      console.log(todoText.textContent);
     }
   } else {
     console.log("No item available");
